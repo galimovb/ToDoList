@@ -1,0 +1,37 @@
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    providers:
+        users_in_db:
+            entity:
+                class: App\Entity\User
+                property: login
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            lazy: true
+            provider: users_in_db
+            json_login:
+                check_path: /login/check
+                username_path: login
+                password_path: password
+            logout:
+                path: /logout
+                target: /login
+            entry_point: App\Security\CustomAuthenticationEntryPoint
+
+    access_control:
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: /logout, roles: PUBLIC_ACCESS }
+        - { path: /registr, roles: PUBLIC_ACCESS }
+        - { path: /planned, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+
+
+        - { path: /, roles: ROLE_USER }
+
