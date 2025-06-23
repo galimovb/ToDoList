@@ -33,6 +33,7 @@ services:
     volumes:
       - .:/var/www
       - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./logs/nginx:/var/log/nginx
     depends_on:
       - php
 
@@ -44,9 +45,12 @@ services:
 
   promtail:
     image: grafana/promtail:2.9.2
+    command: -config.file=/etc/promtail/config.yaml
     volumes:
-      - ./logs:/var/log
+      - ./logs/nginx:/var/log/nginx
       - ./docker/promtail-config.yaml:/etc/promtail/config.yaml
+    depends_on:
+      - loki
 
   grafana:
     image: grafana/grafana:latest
