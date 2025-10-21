@@ -1,4 +1,4 @@
-name: Build and Deploy Symfony-Vue App
+name: CI
 
 on:
   push:
@@ -23,18 +23,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push image
+      - name: Build and push Docker image
         run: |
-          TAG=${GITHUB_SHA::7}
+          TAG=${GITHUB_SHA::7}  # Обрезаем SHA до 7 символов
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/symfony-todo:${TAG} .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/symfony-todo:${TAG}
 
       - name: Send Telegram notification
-        uses: appleboy/telegram-action@v0.1.2
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          message: |
-            ✅ Build completed for commit ${{ github.sha }}
-            🏷 Tag: ${{ github.sha::7 }}
-            👤 Author: ${{ github.actor }}
+        run: |
+          SHORT_SHA=${GITHUB_SHA::7}  # Обрезаем SHA до 7 символов
+          MESSAGE="✅ Build completed for commit $GITHUB_SHA
+🏷 Tag: $SHORT_SHA
+👤 Author: $GITHUB_ACTOR"
+  curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+  -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+  -d text="$MESSAGE"
