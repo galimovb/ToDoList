@@ -1,8 +1,0 @@
-172.18.0.1 - - [23/Jun/2025:16:19:09 +0000] "GET / HTTP/1.1" 302 282 "-" "curl/7.81.0"
-172.18.0.1 - - [23/Jun/2025:16:28:20 +0000] "HEAD / HTTP/1.1" 302 0 "-" "curl/7.81.0"
-172.18.0.1 - - [23/Jun/2025:16:46:48 +0000] "GET / HTTP/1.1" 302 282 "-" "curl/7.81.0"
-172.18.0.1 - - [23/Jun/2025:17:02:02 +0000] "GET / HTTP/1.1" 302 282 "http://localhost:8080/planned" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
-172.18.0.1 - - [23/Jun/2025:17:02:11 +0000] "GET /login HTTP/1.1" 200 368 "http://localhost:8080/planned" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 YaBrowser/25.4.0.0 Safari/537.36"
-172.18.0.1 - - [23/Jun/2025:17:20:51 +0000] "GET / HTTP/1.1" 302 282 "-" "curl/7.81.0"
-172.18.0.1 - - [23/Jun/2025:17:24:30 +0000] "GET / HTTP/1.1" 302 282 "-" "curl/7.81.0"
-172.18.0.1 - - [23/Jun/2025:17:24:39 +0000] "GET /register HTTP/1.1" 404 1003 "-" "curl/7.81.0"

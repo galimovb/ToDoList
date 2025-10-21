@@ -38,7 +38,7 @@ const showedTaskCreateModal = () => {
 .el-button {
   justify-content: left;
   padding: 0 !important;
-  font-size: 16px !important;
+  font-size: 15px !important;
   color: red !important;
 }
 </style>
