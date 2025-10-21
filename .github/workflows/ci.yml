@@ -32,7 +32,8 @@ jobs:
       - name: Send Telegram notification
         run: |
           SHORT_SHA=${GITHUB_SHA::7}
-          MESSAGE="✅ Build completed for commit $GITHUB_SHA\n🏷 Tag: $SHORT_SHA\n👤 Author: $GITHUB_ACTOR"
+          MESSAGE="<b>Сборка завершена</b>%0A Коммит: $GITHUB_SHA%0A🏷 Тег: $SHORT_SHA%0A Автор: $GITHUB_ACTOR"
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d parse_mode="HTML" \
             -d text="$MESSAGE"
